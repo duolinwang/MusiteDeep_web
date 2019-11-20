@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  server:
+    build: .
+    image: duolinwang/musite_backend
+    expose: 
+      - 5000
+    environment:
+      API_HOST: "http://localhost:3000"
+      APP_SERVER_PORT: 5000
+    ports:
+      - '5000:5000'
+    depends_on:
+      - 'mongo'
+    command: sh -c "cd ./mongoblast/ && python3 setup.py -download 0 && cd /musite && node app.js"
+  mongo:
+    image: mongo:4.0
+    command: mongod --port 23333
+    ports:
+      - "23333:23333"
+  web:
+    build: ./web
+    image: duolinwang/musite_web
+    expose: 
+      - 3333
+    ports:
+      - '3333:3333'
+    links: 
+      - server
+    command: sh -c "export PORT=3333 && npm start"
+
+
