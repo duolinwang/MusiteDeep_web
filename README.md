@@ -61,7 +61,7 @@ python3 predict_multi_batch.py -input testdata/Phosphorylation/Y/test_allspecies
 ```
 
 ##### For advanced users who want to perform training and prediction by their own data
-Because we used ensemble models from two deep-learning architectures in this server, two types of models need to be trained, one is the CNN model [1] trained by train_CNN_10fold_ensemble.py, the other is the capsule model [2] trained by train_capsnet_10fold_ensemble.py. Users can run the following by replacing with their own data and parameters.
+Because we used ensemble models from two deep-learning architectures in this server, two types of models need to be trained, one is the CNN model [1] trained by train_CNN_10fold_ensemble.py, the other is the capsule model [2] trained by train_capsnet_10fold_ensemble.py. Users can run the following by replacing with their own data (the training data should be in FASTA format; amino acids followed by "#" indicates the positive sites) and parameters.
 ```sh
 python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -input [custom training data in FASTA format] -output [folder for the output models] -checkpointweights [folder for the intermediate checkpoint files] -residue-types [custom specified residue types]
 
