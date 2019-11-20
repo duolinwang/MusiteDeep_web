@@ -73,7 +73,7 @@ For details of other parameters, use the -h or --help parameter.
 ```
  For Phosphotyrosine, we transfered the weights trained in Phosphoserine_Phosphothreonine:
 ```sh
-  python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -inputweights ./models/Phosphoserine_Phosphothreonine/CNNmodels/model_HDF5model_fold0_class0 -input "testdata/Phosphorylation/Y/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphotyrosine/CNNmodels/" -checkpointweights "./models_test/Phosphotyrosine/CNNmodels/" -residue-types Y -nclass=1 -maxneg 30
+ python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -inputweights ./models/Phosphoserine_Phosphothreonine/CNNmodels/model_HDF5model_fold0_class0 -input "testdata/Phosphorylation/Y/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphotyrosine/CNNmodels/" -checkpointweights "./models_test/Phosphotyrosine/CNNmodels/" -residue-types Y -nclass=1 -maxneg 30
  python3 train_capsnet_10fold_ensemble.py -load_average_weight -balance_val -inputweights ./models/Phosphoserine_Phosphothreonine/capsmodels/model_HDF5model_fold0_class0 -input "testdata/Phosphorylation/Y/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphotyrosine/capsmodels/" -checkpointweights "./models_test/Phosphotyrosine/capsmodels/" -residue-types Y -nclass=1 -maxneg 30
  ```
 ### Training and testing data are provided in the folder of MusiteDeep/testdata.
@@ -81,4 +81,5 @@ For details of other parameters, use the -h or --help parameter.
 ### Citation：
 Please cite the following paper for using MusiteDeep:
 >[1] Wang, D., et al. (2017) MusiteDeep: a deep-learning framework for general and kinase-specific phosphorylation site prediction, Bioinformatics, 33(24), 3909-3916.
+
 >[2] Wang, D., et al. (2019) Capsule network for protein post-translational modification site prediction, Bioinformatics, 35(14), 2386-2394.
