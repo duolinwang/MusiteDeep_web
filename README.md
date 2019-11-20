@@ -46,32 +46,39 @@ CPU is only suitable for prediction not training.
 ##### For general users who want to perform PTM site prediction by our provided model :
 cd to the MusiteDeep folder which contains predict_multi_batch.py
 ```sh
-python3 predict_multi_batch.py -input [custom prediction data in fasta format] -output [custom specified prefix for the prediction results] -model-prefix [prefix of pre-trained model] 
+python3 predict_multi_batch.py -input [custom prediction data in FASTA format] -output [custom specified prefix for the prediction results] -model-prefix [prefix of pre-trained model] 
 ```
-The -model-prefix can be "models/XX/", here XX representes one pre-trained model in the folder of "MusiteDeep/models/". Prediction for multiple PTMs, use ";" to seperate them.
-For example: 
+For details of other parameters, use the -h or --help parameter.
+
+The -model-prefix can be "models/XX/", here XX representes one pre-trained model in the folder of "MusiteDeep/models/". To predict for multiple PTMs, use ";" to seperate the prefixes of different pre-trained models.
+For example to predict for phosphotyrosine and methyllysine simultaneously:
 ```sh
 python3 predict_multi_batch.py -input testdata/Phosphorylation/Y/test_allspecies_sequences.fasta -output test/output  -model-prefix models/Phosphotyrosine;models/Methyllysine;
 ```
-to predict for phosphotyrosine and methyllysine simultaneously.
 
-##### For advanced users who want to perform training and prediction by using their own data:
+##### For advanced users who want to perform training and prediction by their own data
+Because we used ensemble models from two deep-learning architectures in this server, two types of models need to be trained, one is the CNN model [1] trained by train_CNN_10fold_ensemble.py, the other is the capsule model [2] trained by train_capsnet_10fold_ensemble.py. Users can run the following by replacing with their own data and parameters.
 ```sh
-train_CNN_10fold_ensemble -load_average_weight -balance_val -input [custom training data in fasta format] -output [folder for the output models] -checkpointweights [folder for the intermediate checkpoint files] -residue-types [custom specified residue types]
+python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -input [custom training data in FASTA format] -output [folder for the output models] -checkpointweights [folder for the intermediate checkpoint files] -residue-types [custom specified residue types]
 
-train_capsnet_10fold_ensemble -load_average_weight -balance_val -input [custom training data in fasta format] -output [folder for the output model] -checkpointweights [folder for the intermediate checkpoint files] -residue-types [custom specified residue types]
+python3 train_capsnet_10fold_ensemble.py -load_average_weight -balance_val -input [custom training data in FASTA format] -output [folder for the output model] -checkpointweights [folder for the intermediate checkpoint files] -residue-types [custom specified residue types]
 ```
+For details of other parameters, use the -h or --help parameter.
+##### Examples of commands used to train our provided models:
+ For Phosphoserine_Phosphothreonine:
 
-#####Commands used to train our provided models:
-
+ ```sh
+ python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -input "testdata/Phosphorylation/ST/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphoserine_Phosphothreonine/CNNmodels/" -checkpointweights "./models_test/Phosphoserine_Phosphothreonine/CNNmodels/" -residue-types S,T -nclass=1 -maxneg 30
+ python3 train_capsnet_10fold_ensemble.py -load_average_weight -balance_val -input "testdata/Phosphorylation/ST/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphoserine_Phosphothreonine/capsmodels/" -checkpointweights "./models_test/Phosphoserine_Phosphothreonine/capsmodels/" -residue-types S,T -nclass=1 -maxneg 30
+```
+ For Phosphotyrosine, we transfered the weights trained in Phosphoserine_Phosphothreonine:
 ```sh
-python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -input "testdata/Phosphorylation/ST/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphoserine_Phosphothreonine/CNNmodels/" -checkpointweights "./models_test/Phosphoserine_Phosphothreonine/CNNmodels/" -residue-types S,T -nclass=1 -maxneg 30
-
-python3 train_capsnet_10fold_ensemble.py -load_average_weight -balance_val -input "testdata/Phosphorylation/ST/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphoserine_Phosphothreonine/capsmodels/" -checkpointweights "./models_test/Phosphoserine_Phosphothreonine/capsmodels/" -residue-types S,T -nclass=1 -maxneg 30
-```
+  python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -inputweights ./models/Phosphoserine_Phosphothreonine/CNNmodels/model_HDF5model_fold0_class0 -input "testdata/Phosphorylation/Y/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphotyrosine/CNNmodels/" -checkpointweights "./models_test/Phosphotyrosine/CNNmodels/" -residue-types Y -nclass=1 -maxneg 30
+ python3 train_capsnet_10fold_ensemble.py -load_average_weight -balance_val -inputweights ./models/Phosphoserine_Phosphothreonine/capsmodels/model_HDF5model_fold0_class0 -input "testdata/Phosphorylation/Y/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphotyrosine/capsmodels/" -checkpointweights "./models_test/Phosphotyrosine/capsmodels/" -residue-types Y -nclass=1 -maxneg 30
+ ```
 ### Training and testing data are provided in the folder of MusiteDeep/testdata.
 
 ### Citation：
 Please cite the following paper for using MusiteDeep:
->Wang, D., et al. (2017) MusiteDeep: a deep-learning framework for general and kinase-specific phosphorylation site prediction, Bioinformatics, 33(24), 3909-3916.
->Wang, D., et al. (2019) Capsule network for protein post-translational modification site prediction, Bioinformatics, 35(14), 2386-2394.
+>[1] Wang, D., et al. (2017) MusiteDeep: a deep-learning framework for general and kinase-specific phosphorylation site prediction, Bioinformatics, 33(24), 3909-3916.
+>[2] Wang, D., et al. (2019) Capsule network for protein post-translational modification site prediction, Bioinformatics, 35(14), 2386-2394.
