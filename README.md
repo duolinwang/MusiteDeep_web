@@ -51,7 +51,7 @@ python3 predict_multi_batch.py -input [custom prediction data in fasta format] -
 The -model-prefix can be "models/XX/", here XX representes one pre-trained model in the folder of "MusiteDeep/models/". Prediction for multiple PTMs, use ";" to seperate them.
 For example: 
 ```sh
-python3 predict_multi_batch.py -input testdata/Phosphorylation/ST/test_allspecies_sequences.fasta -output test/output  -model-prefix models/Phosphotyrosine;models/Methyllysine;
+python3 predict_multi_batch.py -input testdata/Phosphorylation/Y/test_allspecies_sequences.fasta -output test/output  -model-prefix models/Phosphotyrosine;models/Methyllysine;
 ```
 to predict for phosphotyrosine and methyllysine simultaneously.
 
