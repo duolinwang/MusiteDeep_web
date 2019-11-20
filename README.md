@@ -52,7 +52,7 @@ cd to the MusiteDeep folder which contains predict_multi_batch.py
 ```sh
 python3 predict_multi_batch.py -input [custom prediction data in FASTA format] -output [custom specified prefix for the prediction results] -model-prefix [prefix of pre-trained model] 
 ```
-For details of other parameters, use the -h or --help parameter.
+For details of the parameters, use the -h or --help parameter.
 
 The -model-prefix can be "models/XX/", here XX representes one pre-trained model in the folder of "MusiteDeep/models/". To predict for multiple PTMs, use ";" to seperate the prefixes of different pre-trained models.
 For example to predict for phosphotyrosine and methyllysine simultaneously:
