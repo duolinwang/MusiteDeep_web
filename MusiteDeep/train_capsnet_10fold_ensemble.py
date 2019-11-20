@@ -68,7 +68,7 @@ if __name__ == "__main__":
     parser.add_argument('-output',  dest='outputfolder', type=str, help='folder for the output models (model and parameter files).', required=True)
     parser.add_argument('-residue-types',  dest='residues', type=str, help='Residue types that this model focus on. For multiple residues, seperate each with \',\'. \n\
     Note: all the residues specified by this parameter will be trained in one model.', required=True)
-    parser.add_argument('-nclass',  dest='nclass', type=int, help='number of classifiers to be trained for one time. [Default:5]', required=False, default=1)
+    parser.add_argument('-nclass',  dest='nclass', type=int, help='number of classifiers to be trained for one time. [Default:1]', required=False, default=1)
     parser.add_argument('-window',  dest='window', type=int, help='window size: the number of amino acid of the left part or right part adjacent to a potential PTM site. 2*\'windo size\'+1 amino acid will be extracted for one protential fragment. [Default:16]', required=False, default=16)
     parser.add_argument('-maxneg',  dest='maxneg', type=int, help='maximum iterations for each classifier which controls the maximum copy number of the negative data which has the same size with the positive data. [Default: 30]', required=False, default=30)
     parser.add_argument('-nb_epoch',  dest='nb_epoch', type=int, help='number of epoches for one bootstrap step. It is invalidate, if earlystop is set.', required=False, default=None)
