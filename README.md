@@ -39,6 +39,10 @@ You can install the dependent packages by the following commands:
     python3 -m pip install keras==2.2.4
     python3 -m pip install tensorflow==1.12.0 (or GPU supported tensorflow, pip3 install tensorflow-gpu==1.12.0 refer to https://www.tensorflow.org/install/ for instructions)
     ```
+    Download codes by
+    ```sh
+    git clone https://github.com/duolinwang/MusiteDeep_web
+    ```
 ##### Running on GPU or CPU
 >If you want to use GPU, you also need to install [CUDA]( https://developer.nvidia.com/cuda-toolkit) and [cuDNN](https://developer.nvidia.com/cudnn); refer to their websites for instructions. 
 CPU is only suitable for prediction not training. 
