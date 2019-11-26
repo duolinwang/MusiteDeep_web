@@ -1,5 +1,5 @@
 # PTM2S
-This function provides the mapping of the predicted PTM sites to the context of protein 3D structure.
+This function provides the mapping of the predicted PTM sites to protein 3D structure.
 - OS: Ubuntu 16.04.5 LTS
 - Python: Python 3.5 
 
