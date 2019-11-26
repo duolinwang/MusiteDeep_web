@@ -1,4 +1,4 @@
-# MusiteDeep predictor
+# PTM prediction
 
 We provide 13 different models for PTM site predictions and customized model training that enables users to train models by their own data. 
 Users can find the models in the folder of MusiteDeep/models. 
