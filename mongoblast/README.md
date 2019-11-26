@@ -1,5 +1,5 @@
 # mongoBlast
-This function provides a homology-based search for the current sequence against proteins in Uniprot/Swiss-Prot, and presents known PTM annotations at the aligned positions.
+This function provides a homology-based search for a query sequence against proteins in Uniprot/Swiss-Prot, and presents known PTM annotations at the aligned positions.
 - OS: Ubuntu 16.04.5 LTS
 - Python: Python 3.5 
 - Mongodb: v3.2.22  
