@@ -32,9 +32,9 @@ pip3 install python-crontab
 ```
 #### Install required modules
 ```r
-pip install feedparser
-pip install pymongo
-pip install configparser
+pip3 install feedparser
+pip3 install pymongo
+pip3 install configparser
 ```
 
 #### Run
