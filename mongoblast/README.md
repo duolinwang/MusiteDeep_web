@@ -50,8 +50,15 @@ For one query sequence:
 ```r
 python user_query.py -query [input sequence in FASTA format] -ptms [PTMs to be annotated.]  -o [output folder]
 ```
-For multiple ones, use \"_\" to seperate them. For example: -ptms ptm1_ptm2_ptm3
+For multiple ones, use \"_\" to seperate them.
+For example:
+```r
+python user_query.py -query example_query_seqs.fasta -ptms "Phosphoserine_Phosphothreonine_Phosphotyrosine"  -o blastoutput
+```
+
 For details of the parameters, use the -h or --help parameter.
+
+
 
 #### Outputs:  
 blastresult.txt
