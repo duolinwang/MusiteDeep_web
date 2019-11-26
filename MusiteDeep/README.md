@@ -1,6 +1,7 @@
-### MusiteDeep is a deep-learning based webserver for protein post-translational modification site (PTM) prediction and visualization
-The server is available at http://www.musite.net.
-In this predictor we provide 13 different models for PTM site predictions, users can find the models in the folder of MusiteDeep/models. 
+# MusiteDeep predictor
+
+We provide 13 different models for PTM site predictions and customized model training that enables users to train models by their own data. 
+Users can find the models in the folder of MusiteDeep/models. 
 ##### Installation
 
   - Installation has been tested in Ubuntu 16.04.5 LST and Mac OS HighSierra with python 3.5.2: 
