@@ -43,17 +43,17 @@ mongod  --port 23333
 ```
 For first time setup, run (takes about 30 minutes): 
 ```r
-python setup.py -update 0 -download 1
+python3 setup.py -update 0 -download 1
 ```
 
 For one query sequence: 
 ```r
-python user_query.py -query [input sequence in FASTA format] -ptms [PTMs to be annotated.]  -o [output folder]
+python3 user_query.py -query [input sequence in FASTA format] -ptms [PTMs to be annotated.]  -o [output folder]
 ```
 For multiple ones, use \"_\" to seperate them.
 For example:
 ```r
-python user_query.py -query example_query_seqs.fasta -ptms "Phosphoserine_Phosphothreonine_Phosphotyrosine"  -o blastoutput
+python3 user_query.py -query example_query_seqs.fasta -ptms "Phosphoserine_Phosphothreonine_Phosphotyrosine"  -o blastoutput
 ```
 
 For details of the parameters, use the -h or --help parameter.
