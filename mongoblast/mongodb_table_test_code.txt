@@ -1,0 +1,26 @@
+mongo #to shell
+use uniprot
+db.table.find({"_id":"GWA_SEPOF"})
+
+db.table.find({"ac":"Q9TT90"})
+
+
+
+Q8ND56
+db.table.find({"ac":"Q01546"})
+
+
+db.table.find({"ac":"Q7Z2R9"})
+
+
+db.table.find({"ac":"P07981"})
+
+db.table.find({"ac":"Q2ET28"})
+db.table.find({"ac":"P48347"})
+db.table.find({"ac":"Q17QE5"})
+
+db.table.find({"ac":"P09577"})
+
+
+
+db.table.drop()
