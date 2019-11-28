@@ -35,7 +35,11 @@ For details of the parameters, use the -h or --help parameter.
 The -model-prefix can be "models/XX/", here XX representes one pre-trained model in the folder of "MusiteDeep/models/". To predict for multiple PTMs, use ";" to seperate the prefixes of different pre-trained models.
 For example to predict for phosphotyrosine and methyllysine simultaneously, run the following command:
 ```sh
-python3 predict_multi_batch.py -input testdata/Phosphorylation/Y/test_allspecies_sequences.fasta -output test/output  -model-prefix models/Phosphotyrosine;models/Methyllysine;
+python3 predict_multi_batch.py -input testdata/Phosphorylation/Y/test_allspecies_sequences.fasta -output test/output  -model-prefix "models/Phosphotyrosine;models/Methyllysine";
+
+or
+
+python3 predict_multi_batch.py -input testdata/Phosphorylation/Y/test_allspecies_sequences.fasta -output test/output  -model-prefix "models/Phosphotyrosine;Methyllysine";
 ```
 
 ##### For advanced users who want to perform training and prediction by their own data
