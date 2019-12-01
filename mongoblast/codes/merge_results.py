@@ -51,7 +51,7 @@ def main():
            pid = line.split(" ")[0]
            identity = line.split(" ")[1]
            sequence = line.split(" ")[2]
-           output.write(pid+" ("+identity+")"+"\t")
+           output.write(pid+"\t("+identity+")"+"\t")
            if pid in ptm_results.keys():
                 poses = [int(x) for x in ptm_results[pid].keys()]
                 ptmresult = ""
