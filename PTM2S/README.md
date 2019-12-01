@@ -1,5 +1,5 @@
 # PTM2S
-This function provides the mapping of the predicted PTM sites to protein 3D structure.
+This function provides the mapping of the predicted PTM sites to protein 3D structures.
 - OS: Ubuntu 16.04.5 LTS
 - Python: Python 3.5 
 
@@ -18,9 +18,9 @@ For details of the parameters, use the -h or --help parameter.
 
 
 #### Outputs:  
-json file ptm2Structure.json in user specified output folder
+json file ptm2Structure.json in the user specified output folder
 
-ptm2Structure.json for the example:
+A sample ptm2Structure.json file:
 ```r
 [{"ProteinId": ">sp|P97756|KKCC1_RAT Calcium/calmodulin-dependent protein kinase kinase 1 OS=Rattus norvegicus GN=Camkk1 PE=1 SV=1", 
   "PTM2Structure": 
@@ -55,4 +55,4 @@ ptm2Structure.json for the example:
    ]}
 ```
 
-The "PTMannotation" filed contains the infomation (colon-determined)for each position, the first is the queryPosition, the second is the queryAminoAcid, the third is the pdbAminoAcid, the last is the PTM prediction results for that position.
+The "PTMannotation" field contains the information (colon-determined)for each position; the first is the queryPosition, the second is the queryAminoAcid, the third is the pdbAminoAcid, and the last is the PTM prediction results for that position.
