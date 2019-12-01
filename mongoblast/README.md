@@ -42,7 +42,7 @@ pip3 install configparser
 ```r
 mongod  --port 23333
 ```
-For first time setup, run (takes about 30 minutes): 
+For first time setup, run (taking about 30 minutes): 
 ```r
 python3 setup.py -update 0 -download 1
 ```
@@ -51,10 +51,10 @@ For one query sequence:
 ```r
 python3 user_query.py -query [input sequence in FASTA format] -ptms [PTMs to be annotated.]  -o [output folder]
 ```
-For multiple ones, use \"_\" to seperate them.
+For multiple ones, use \";\" to separate them.
 For example:
 ```r
-python3 user_query.py -query example_query_seqs.fasta -ptms "Phosphoserine_Phosphothreonine_Phosphotyrosine"  -o blastoutput
+python3 user_query.py -query example_query_seqs.fasta -ptms "Phosphoserine;Phosphothreonine;Phosphotyrosine"  -o blastoutput
 ```
 
 For details of the parameters, use the -h or --help parameter.
