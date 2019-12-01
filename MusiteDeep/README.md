@@ -32,8 +32,8 @@ python3 predict_multi_batch.py -input [custom prediction data in FASTA format] -
 ```
 For details of the parameters, use the -h or --help parameter.
 
-The -model-prefix can be "models/XX/", here XX representes one pre-trained model in the folder of "MusiteDeep/models/". To predict for multiple PTMs, use ";" to seperate the prefixes of different pre-trained models.
-For example to predict for phosphotyrosine and methyllysine simultaneously, run the following command:
+The -model-prefix can be "models/XX/", here XX represents one pre-trained model in the folder of "MusiteDeep/models/". To predict for multiple PTMs, use ";" to separate the prefixes of different pre-trained models.
+For example, to predict for phosphotyrosine and methyllysine simultaneously, run the following command:
 ```sh
 python3 predict_multi_batch.py -input testdata/Phosphorylation/Y/test_allspecies_sequences.fasta -output test/output  -model-prefix "models/Phosphotyrosine;models/Methyllysine";
 
@@ -42,14 +42,14 @@ or
 python3 predict_multi_batch.py -input testdata/Phosphorylation/Y/test_allspecies_sequences.fasta -output test/output  -model-prefix "models/Phosphotyrosine;Methyllysine";
 ```
 
-##### For advanced users who want to perform training and prediction by their own data
-Because we used ensemble models by two deep-learning architectures in this server, two types of models need to be trained, one is the CNN model [1] trained by train_CNN_10fold_ensemble.py, the other is the capsule model [2] trained by train_capsnet_10fold_ensemble.py. To train a customized predictor, users can run the following commands and replace with their own data and parameters.
+##### For advanced users like to perform training and prediction by using their own data
+Because we used ensemble models by two deep-learning architectures, two types of models need to be trained: one is the CNN model [1] trained by train_CNN_10fold_ensemble.py, and the other is the capsule model [2] trained by train_capsnet_10fold_ensemble.py. To train a customized predictor, users can run the following commands and replace with their own data and parameters.
 ```sh
 python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -input [custom training data in FASTA format] -output [folder for the output models] -checkpointweights [folder for the intermediate checkpoint files] -residue-types [custom specified residue types]
 
 python3 train_capsnet_10fold_ensemble.py -load_average_weight -balance_val -input [custom training data in FASTA format] -output [folder for the output model] -checkpointweights [folder for the intermediate checkpoint files] -residue-types [custom specified residue types]
 ```
-The training data should be in the FASTA format. Residues followed by "#" indicates the positive sites, residues in the custom specified residue types but without "#" are considered as the negative sites. -residue-types parameter indicate the potential modification residue types that this model focus on. Multiple types of residues are seperated with ','. And all the residues specified by this parameter will be trained in one predictor. For details of other parameters, use the -h or --help parameter.
+The training data should be in the FASTA format. Residues followed by "#" indicates the positive sites, residues in the custom specified residue types but without "#" are considered as the negative sites. Tje -residue-types parameter indicates the potential modification residue types that this model focuses on. Multiple types of residues are separated with ','. And all the residues specified by this parameter will be trained in one predictor. For details of other parameters, use the -h or --help parameter.
 ##### Examples of commands used to train our provided models:
  For Phosphoserine_Phosphothreonine:
 
@@ -57,15 +57,9 @@ The training data should be in the FASTA format. Residues followed by "#" indica
  python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -input "testdata/Phosphorylation/ST/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphoserine_Phosphothreonine/CNNmodels/" -checkpointweights "./models_test/Phosphoserine_Phosphothreonine/CNNmodels/" -residue-types S,T -nclass=1 -maxneg 30
  python3 train_capsnet_10fold_ensemble.py -load_average_weight -balance_val -input "testdata/Phosphorylation/ST/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphoserine_Phosphothreonine/capsmodels/" -checkpointweights "./models_test/Phosphoserine_Phosphothreonine/capsmodels/" -residue-types S,T -nclass=1 -maxneg 30
 ```
- For Phosphotyrosine, we transfered the pre-trained weights from Phosphoserine_Phosphothreonine:
+ For Phosphotyrosine, we transferred the pre-trained weights from Phosphoserine_Phosphothreonine:
 ```sh
  python3 train_CNN_10fold_ensemble.py -load_average_weight -balance_val -inputweights ./models/Phosphoserine_Phosphothreonine/CNNmodels/model_HDF5model_fold0_class0 -input "testdata/Phosphorylation/Y/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphotyrosine/CNNmodels/" -checkpointweights "./models_test/Phosphotyrosine/CNNmodels/" -residue-types Y -nclass=1 -maxneg 30
  python3 train_capsnet_10fold_ensemble.py -load_average_weight -balance_val -inputweights ./models/Phosphoserine_Phosphothreonine/capsmodels/model_HDF5model_fold0_class0 -input "testdata/Phosphorylation/Y/train_allspecies_sequences_annotated.fasta" -output "./models_test/Phosphotyrosine/capsmodels/" -checkpointweights "./models_test/Phosphotyrosine/capsmodels/" -residue-types Y -nclass=1 -maxneg 30
  ```
 ### Training and testing data are provided in the folder of MusiteDeep/testdata.
-
-### Citation：
-Please cite the following paper for using MusiteDeep:
->[1] Wang, D., et al. (2017) MusiteDeep: a deep-learning framework for general and kinase-specific phosphorylation site prediction, Bioinformatics, 33(24), 3909-3916.
-
->[2] Wang, D., et al. (2019) Capsule network for protein post-translational modification site prediction, Bioinformatics, 35(14), 2386-2394.
