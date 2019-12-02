@@ -1,9 +1,9 @@
 ### MusiteDeep is a deep-learning based webserver for protein post-translational modification site (PTM) prediction and visualization
 The MusiteDeep web server is available at http://www.musite.net.
 This repository contains the stand-alone tools in python to run MusiteDeep on a local machine:
-- 1 PTM prediction: refer to ./MusiteDeep
-- 2 Homology-based search by BLAST: refer to ./mongoblast
-- 3 Mapping the predicted PTM sites to protein 3D structure: refer to ./PTM2S
+- 1 PTM prediction: refer to [./MusiteDeep](https://github.com/duolinwang/MusiteDeep_web/tree/master/MusiteDeep)
+- 2 Homology-based search by BLAST: refer to [./mongoblast](https://github.com/duolinwang/MusiteDeep_web/tree/master/mongoblast) 
+- 3 Mapping the predicted PTM sites to protein 3D structure: refer to [./PTM2S](https://github.com/duolinwang/MusiteDeep_web/tree/master/PTM2S)
 
 
 ### Citation：
