@@ -27,7 +27,7 @@ import json
 import itertools
 import os
 import getpass
-
+import time
 #GLOBAL VAR
 USER_NAME = getpass.getuser()
 PARENT_DIR = os.path.dirname(os.getcwd())
@@ -45,14 +45,21 @@ def rssread():
 	return new_date
 
 def getUniprot():
-	uniprot_url = 'ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.dat.gz'
-	urlretrieve(uniprot_url, 'uniprot.txt.gz')
-	print("Unzip file...")
-	with gzip.open('uniprot.txt.gz', 'rb') as f_in:
-		with open('./uniprotData/uniprot.txt', 'wb') as f_out:
-			shutil.copyfileobj(f_in, f_out)
-	print("File name:uniprot.txt")
-
+    creattime = '-'.join(time.ctime(os.path.getctime('./uniprotData/uniprot.txt')).split())
+    print("zip old file created on "+creattime)
+    with gzip.open('./uniprotData/uniprot'+str(creattime)+'.txt.gz', 'wb') as f_out:
+        with open('./uniprotData/uniprot.txt', 'rb') as f_in:
+            shutil.copyfileobj(f_in, f_out)
+    
+    print("download new file")
+    uniprot_url = 'ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.dat.gz'
+    urlretrieve(uniprot_url, 'uniprot.txt.gz')
+    print("Unzip file...")
+    with gzip.open('uniprot.txt.gz', 'rb') as f_in:
+        with open('./uniprotData/uniprot.txt', 'wb') as f_out:
+            shutil.copyfileobj(f_in, f_out)
+    print("File name:uniprot.txt")
+    
 
 def valid_date(s):
     try:
@@ -170,7 +177,7 @@ def remove_duplicates(values):
             output.append(value)
             seen.add(value)
     return output
-	
+
 # merge two python dict two one dict
 def merge_two_dicts(x, y):
     z = x.copy()   # start with x's keys and values
@@ -200,6 +207,7 @@ def MongotoPTMannotation(proteinIDs,Tag_FTs,output_prefix):
     
     displayfile = open(output_prefix+'/display.txt','w') #for display in PTMweb download ptm
     curtime=time.asctime()
+    curtime = ' '.join(curtime.split())
     ptm_proteins=[]
     ptm_sites=[]
     #for index, tag in enumerate(sorted(Tag_FTs)):
