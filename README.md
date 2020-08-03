@@ -7,7 +7,6 @@ This repository contains the stand-alone tools in python to run MusiteDeep on a 
 
 
 ### Citation：
-Please select to cite the appropriate paper for using MusiteDeep:
->[1] Wang, D., et al. (2020) MusiteDeep: a deep-learning based webserver for protein post-translational modification site prediction and visualization, Nucleic Acids Research, , gkaa275
->[2] Wang, D., et al. (2019) Capsule network for protein post-translational modification site prediction, Bioinformatics, 35(14), 2386-2394.
->[3] Wang, D., et al. (2017) MusiteDeep: a deep-learning framework for general and kinase-specific phosphorylation site prediction, Bioinformatics, 33(24), 3909-3916.
+Please select to cite the following paper for using MusiteDeep:
+
+Duolin Wang, Dongpeng Liu, Jiakang Yuchi, Fei He, Yuexu Jiang, Siteng Cai, Jingyi Li, Dong Xu, MusiteDeep: a deep-learning based webserver for protein post-translational modification site prediction and visualization, Nucleic Acids Research, Volume 48, Issue W1, 02 July 2020, Pages W140–W146, https://doi.org/10.1093/nar/gkaa275
