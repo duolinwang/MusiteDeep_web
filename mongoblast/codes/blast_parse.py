@@ -99,7 +99,7 @@ def display_output(q_seq,output,identities,fp):
     #print(q_id +" identity "+ q_seq + "\n")
     
     for id,identy in sorted(identities.items(),key = lambda item:item[1],reverse=True):
-        resseqs = re.sub(' ','-',output[id])
+        resseqs = re.sub(' ','-',output[id]) 
         for x in np.arange(lenseq-len(resseqs)):
             resseqs+='-'
         
@@ -111,11 +111,12 @@ def get_ptms(starts,lens,ptm,table,seqs):
     ab_ptms = dict()
     for id in seqs:
         ab_ptms[id] = []
-        if re.match('(.+)_[1-9]',id):
-             real_id = re.match('(.+)_[1-9]',id).group(1)
+        if re.match('(.+)|[1-9]',id):
+             real_id = re.match('(.+)|[1-9]',id).group(1)
         else:
             real_id = id
-        data = table.find_one({'_id': real_id})
+        #data = table.find_one({'_id': real_id})
+        data = table.find_one({'ac': real_id}) #change id to ac
         if ptm in data:
             for i in data[ptm]:
                 if int(i) > starts[id][1] and int(i) < (starts[id][-1] + lens[id][-1]):
@@ -174,6 +175,7 @@ def blast_output(filepath,ptms,out_folder):
     door = 0
     output = dict()
     ac = ''
+    id = ''
     seq = ''
     counter = dict()
     identities = dict()
@@ -185,14 +187,19 @@ def blast_output(filepath,ptms,out_folder):
             q_seq = re.sub('\"','',data[2]) ###########constructing
             q_seq += get_seq(fp)
         elif data[0] == 'accession':
-            ac = re.match(r'\"([A-Z0-9_]+)\",',data[1]).group(1)
-            if ac in output:
-                seq = table.find_one({'_id': ac})['sequence']
+            id = re.match(r'\"([A-Z0-9_-]+)\",',data[1]).group(1)
+            if id in output:
+                seq = table.find_one({'_id': id})['sequence']
+                ac = table.find_one({'_id': id})['ac'][0] # only the first is effect ac
+                print(ac)
+                #seq = table.find_one({'ac': ac})['sequence']
                 counter[ac] += 1
-                ac = ac + '_' + str(counter[ac])
+                ac = ac + '|' + str(counter[ac]) #change to use | instead of _ because maybe in accid has _
                 output[ac] = ''
             else:
-                seq = table.find_one({'_id': ac})['sequence']
+                seq = table.find_one({'_id': id})['sequence']
+                #seq = table.find_one({'ac': ac})['sequence']
+                ac = table.find_one({'_id': id})['ac'][0] 
                 counter[ac] = 1
                 output[ac] = ''
             identities[ac] = identity
