@@ -70,7 +70,7 @@ def valid_date(s):
 
 def connectMongoDB(dbname,colname):
 	# connect to mongodb
-	client = MongoClient('localhost', 23334)
+	client = MongoClient('localhost', 23333)
 	# Get the database
 	db = client[dbname]
 	collection = db[colname]
