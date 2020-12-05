@@ -26,7 +26,7 @@ def main():
     path = os.path.dirname(os.path.realpath(__file__))
     parser = argparse.ArgumentParser()
     parser.add_argument('-query', help="query sequence in FASTA format (currently, only one sequence is allowed).",required=True)
-    parser.add_argument('-ptms', default='Phosphoserine;Phosphothreonine', help="PTMs to be annotated (default: 'Phosphoserine;Phosphothreonine'). For multiple ones, use \";\" to seperate them. For example: ptm1;ptm2;ptm3.\n\
+    parser.add_argument('-ptms', default='Phosphoserine_Phosphothreonine', help="PTMs to be annotated (default: 'Phosphoserine_Phosphothreonine'). For multiple ones, use \";\" to seperate them. For example: ptm1;ptm2;ptm3.\n\
                        Currently, we supported\n: \
                        Phosphoserine, Phosphothreonine, Phosphotyrosine,\
                        N-linked_glycosylation,\
